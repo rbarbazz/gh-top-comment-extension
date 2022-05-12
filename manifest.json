@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Github Top Comment Link",
-  "version": "1.0",
+  "version": "1.0.0",
   "description": "Adds a link to the top comment on Github issue pages.",
   "content_scripts": [
     {
