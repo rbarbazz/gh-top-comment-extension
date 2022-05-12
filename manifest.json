@@ -1,0 +1,12 @@
+{
+  "manifest_version": 2,
+  "name": "gh-top-comment-button",
+  "version": "1.0",
+  "description": "Adds a link to the top comment in a Github issue",
+  "content_scripts": [
+    {
+      "matches": ["*://github.com/*/*/issues/*"],
+      "js": ["index.js"]
+    }
+  ]
+}
