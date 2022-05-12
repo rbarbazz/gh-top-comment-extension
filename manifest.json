@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "gh-top-comment-button",
+  "name": "Github Top Comment Link",
   "version": "1.0",
   "description": "Adds a link to the top comment in a Github issue",
   "content_scripts": [
