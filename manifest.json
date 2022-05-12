@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Github Top Comment Link",
   "version": "1.0",
-  "description": "Adds a link to the top comment in a Github issue",
+  "description": "Adds a link to the top comment on Github issue pages.",
   "content_scripts": [
     {
       "matches": ["*://github.com/*/*/issues/*"],
