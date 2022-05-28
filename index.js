@@ -54,17 +54,4 @@ const run = () => {
 
 run()
 
-let lastUrl = location.href
-
-const observer = new MutationObserver(() => {
-  const url = location.href
-
-  if (url !== lastUrl) {
-    lastUrl = url
-
-    run()
-  }
-}).observe(document.getElementById('repo-content-pjax-container'), {
-  childList: true,
-  subtree: true,
-})
+document.addEventListener('pjax:end', run)
