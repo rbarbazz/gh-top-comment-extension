@@ -20,10 +20,12 @@ const findTopComment = () => {
     return { id: issueComment.id, reactionCount: issueCommentReactionsCount }
   })
 
-  // Find the comment with the highest number of reactions
-  return issueCommentsReactionsCounts.reduce((prev, current) =>
-    prev.reactionCount > current.reactionCount ? prev : current,
-  )
+  if (issueCommentsReactionsCounts.length > 0) {
+    // Find the comment with the highest number of reactions
+    return issueCommentsReactionsCounts.reduce((prev, current) =>
+      prev.reactionCount > current.reactionCount ? prev : current,
+    )
+  }
 }
 
 const createTopCommentLink = (topCommentId) => {
@@ -38,9 +40,31 @@ const createTopCommentLink = (topCommentId) => {
   topCommentContainer.appendChild(topCommentLink)
 
   const newIssueButton = document.querySelector('.gh-header-actions')
-  newIssueButton.parentNode.insertBefore(topCommentContainer, newIssueButton)
+
+  if (newIssueButton) {
+    newIssueButton.parentNode.insertBefore(topCommentContainer, newIssueButton)
+  }
 }
 
-const topComment = findTopComment()
+const run = () => {
+  const topComment = findTopComment()
 
-if (topComment.reactionCount > 0) createTopCommentLink(topComment.id)
+  if (topComment?.reactionCount > 0) createTopCommentLink(topComment.id)
+}
+
+run()
+
+let lastUrl = location.href
+
+const observer = new MutationObserver(() => {
+  const url = location.href
+
+  if (url !== lastUrl) {
+    lastUrl = url
+
+    run()
+  }
+}).observe(document.getElementById('repo-content-pjax-container'), {
+  childList: true,
+  subtree: true,
+})
